@@ -3,6 +3,8 @@ using System.Drawing;
 using System.Numerics;
 using System.Reflection;
 using System.Security.Cryptography;
+using static System.Formats.Asn1.AsnWriter;
+using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ArrayInCsharp
@@ -339,6 +341,98 @@ namespace ArrayInCsharp
 
             //=================                      ===================
 
+
+
+            //10.Find the Most Frequent Number in an Array
+            //Ask the user for N numbers and store them in an array.
+            //Find the number that appears most frequently in the array.
+            //If there are multiple, return the smallest frequent number.
+
+            //Console.WriteLine("Enter N numbers: ");
+            //int n = int.Parse(Console.ReadLine());
+            //int[] arr = new int[n];
+            //Console.WriteLine($"Enter {n} numbers: ");
+
+            //for (int i = 0; i < n; i++)
+            //{
+            //    arr[i]= int.Parse(Console.ReadLine());
+            //}
+
+            //int maxCount = 0;
+            //int FN = arr[0];
+
+            //for (int i = 0; i < n; i++)
+            //{
+            //    int count = 0;
+            //    for (int j = 0; j < n; j++)
+            //    {
+            //        if (arr[i] == arr[j])
+            //        {
+            //            count++;
+            //        }
+            //    }
+            //    if (count > maxCount)
+            //    {
+            //        maxCount = count;
+            //        FN = arr[i];
+            //    }
+            //    else if (count == maxCount && arr[i] < FN)
+            //    {
+            //        FN = arr[i];
+            //    }
+            //}
+
+            //Console.WriteLine($"Most frequent number: {FN}");
+
+            //=================                      ===================
+
+            //11.Check if an Array is Palindrome
+            //Ask the user for N numbers and store them in an array.
+            //Check if the array reads the same forward and backward.
+
+            //Console.WriteLine("Enter N numbers: ");
+            //int n = int.Parse(Console.ReadLine());
+            //int[] arr = new int[n];
+            //Console.WriteLine($"Enter {n} numbers: ");
+
+            //for (int i = 0; i < n; i++)
+            //{
+            //    arr[i] = int.Parse(Console.ReadLine());
+            //}
+
+            //int[] reverse = new int[n];
+            //Array.Copy(arr, reverse, n);
+            //Array.Reverse(reverse);
+
+            //bool isPalindrome = true;
+
+            //for (int i = 0; i < n; i++)
+            //{
+            //    if (arr[i] != reverse[i])
+            //    {
+            //        isPalindrome = false;
+            //        break;
+            //    }
+            //}
+
+            //if (isPalindrome)
+            //{
+            //    Console.WriteLine("Array is a palindrome");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Array is not a palindrome");
+            //}
+
+            //Console.WriteLine(string.Join(",", arr));
+            //Console.WriteLine(string.Join(",", reverse));
+
+
+            //=================                      ===================
+
+
+
+
             while (true)
             {
                 Console.Clear();
@@ -352,7 +446,9 @@ namespace ArrayInCsharp
                 Console.WriteLine("7. Merge Two Arrays");
                 Console.WriteLine("8. Remove Duplicates");
                 Console.WriteLine("9. Find Second Largest Number");
-                Console.WriteLine("10. Exit");
+                Console.WriteLine("10. Find Most Frequent Number");
+                Console.WriteLine("11. Check Array Palindrome");
+                Console.WriteLine("12. Exit");
 
                 Console.Write("Enter your choice: ");
                 int choice = int.Parse(Console.ReadLine());
@@ -368,7 +464,9 @@ namespace ArrayInCsharp
                     case 7: MergeArrays(); break;
                     case 8: RemoveDuplicates(); break;
                     case 9: FindSecondLargest(); break;
-                    case 10: return;
+                    case 10: FindMostFrequentNumber(); break;
+                    case 11: CheckArrayPalindrome(); break;
+                    case 12: return;
                     default: Console.WriteLine("Invalid choice! Try again."); break;
                 }
                 Console.WriteLine("Press any key to continue...");
@@ -624,6 +722,89 @@ namespace ArrayInCsharp
 
                 Console.WriteLine($"Second largest number: {secondMax}");
               }
+
+              static void FindMostFrequentNumber()
+              {
+                Console.WriteLine("Enter N numbers: ");
+                int n = int.Parse(Console.ReadLine());
+                int[] arr = new int[n];
+                Console.WriteLine($"Enter {n} numbers: ");
+
+                for (int i = 0; i < n; i++)
+                {
+                    arr[i] = int.Parse(Console.ReadLine());
+                }
+
+                int maxCount = 0;
+                int FN = arr[0];
+
+                for (int i = 0; i < n; i++)
+                {
+                    int count = 0;
+                    for (int j = 0; j < n; j++)
+                    {
+                        if (arr[i] == arr[j])
+                        {
+                            count++;
+                        }
+                    }
+                    if (count > maxCount)
+                    {
+                        maxCount = count;
+                        FN = arr[i];
+                    }
+                    else if (count == maxCount && arr[i] < FN)
+                    {
+                        FN = arr[i];
+                    }
+                }
+
+                Console.WriteLine($"Most frequent number: {FN}");
+
+            }
+
+              static void CheckArrayPalindrome()
+              {
+
+                Console.WriteLine("Enter N numbers: ");
+                int n = int.Parse(Console.ReadLine());
+                int[] arr = new int[n];
+                Console.WriteLine($"Enter {n} numbers: ");
+
+                for (int i = 0; i < n; i++)
+                {
+                    arr[i] = int.Parse(Console.ReadLine());
+                }
+
+                int[] reverse = new int[n];
+                Array.Copy(arr, reverse, n);
+                Array.Reverse(reverse);
+
+                bool Palindrome = true;
+
+                for (int i = 0; i < n; i++)
+                {
+                    if (arr[i] != reverse[i])
+                    {
+                        Palindrome = false;
+                        break;
+                    }
+                }
+
+                if (Palindrome)
+                {
+                    Console.WriteLine("Array is palindrome");
+                }
+                else
+                {
+                    Console.WriteLine("Array is not palindrome");
+                }
+
+                Console.WriteLine(string.Join(",", arr));
+                Console.WriteLine(string.Join(",", reverse));
+
+              }
+
         }
     }
 
